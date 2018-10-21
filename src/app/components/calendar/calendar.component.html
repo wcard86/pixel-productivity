@@ -1,0 +1,22 @@
+<div class="calendar">
+    <div *ngFor="let day of month.days" class="day-common" [ngClass]="getStatus(day)">
+      {{day.blocks}}
+    </div>
+    <div>Total: {{ total() }}</div>
+  </div>
+  
+  <!-- <input type="text" [(ngModel)]="text">
+  <div>{{text}}</div> -->
+  
+  <!-- <div *ngFor="let day of month.days">
+    <div class="day-common" [ngClass]="getStatus(day)">{{day.blocks}}</div>
+  </div>
+  
+  let month[] = month.days;
+  for(i=0, i < month.length, i++) {
+    day = month[i];
+    // do stuff with the day
+  }
+  
+  -->
+  

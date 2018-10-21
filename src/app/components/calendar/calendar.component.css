@@ -1,0 +1,27 @@
+.day-common {
+    border-width: 1px;
+    border-color: black;
+    border-style:  solid;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+  }
+  
+  .nothing {
+    background: red;
+  }
+  
+  .completed {
+    background: green;
+  }
+  
+  .vacation {
+    background: gray;
+  }
+  .calendar {
+    width: 160px;
+  }
+  
+  .padding {
+    border-color: white;
+  }
