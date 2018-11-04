@@ -1,8 +1,8 @@
 <div class="calendar">
-    <div *ngFor="let day of month.days" class="day-common" [ngClass]="getStatus(day)">
+    <div *ngFor="let day of month.days" class="body-text day-common" [ngClass]="getStatus(day)">
       {{day.blocks}}
     </div>
-    <div>Total: {{ total() }}</div>
+    <div class="body-text">Total: {{ total() }}</div>
   </div>
   
   <!-- <input type="text" [(ngModel)]="text">
