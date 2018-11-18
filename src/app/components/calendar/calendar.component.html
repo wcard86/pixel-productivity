@@ -1,9 +1,30 @@
-<div class="calendar">
+<!-- <div class="calendar">
     <div *ngFor="let day of month.days" class="body-text day-common" [ngClass]="getStatus(day)">
       {{day.blocks}}
     </div>
     <div class="body-text">Total: {{ total() }}</div>
+</div> -->
+<div class="calendar">
+  <h1 class="header-text">Calendar</h1>
+  <div class="month-container">
+    <div *ngFor="let month of (calendar$ | async)?.months" class="month">
+      <h4>{{month.name}}</h4>
+      <div class="days-area">
+        <div class="body-text day-common day-header">Su</div>
+        <div class="body-text day-common day-header">M</div>
+        <div class="body-text day-common day-header">T</div>
+        <div class="body-text day-common day-header">W</div>
+        <div class="body-text day-common day-header">Th</div>
+        <div class="body-text day-common day-header">F</div>
+        <div class="body-text day-common day-header">S</div>
+        <div *ngFor="let day of month?.days" class="body-text day-common" [ngClass]="getStatus(day)">
+          {{day.blocks}}
+        </div>
+      </div>
+      <div class="body-text"><span class="pull-down">Total Pomodoro: {{ total(month?.days) }}</span></div>
+    </div>
   </div>
+</div>
   
   <!-- <input type="text" [(ngModel)]="text">
   <div>{{text}}</div> -->

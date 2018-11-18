@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Day } from '../../models/day.model';
+import { Calendar } from '../../models/calendar.model';
+import { Store, select } from '@ngrx/store';
+import * as fromCalendar from '../../reducers/calendar.reducer';
+import { Observable } from 'rxjs';
+import { CalendarService } from '../../services/calendar.service';
+import { getCalendar } from '../../reducers';
 
 @Component({
   selector: 'app-calendar',
@@ -7,27 +13,32 @@ import { Day } from '../../models/day.model';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
-  public status = 'completed';
-  public month: { days: Day[], firstDate: string} = {
-    days: [ {padding: true}, {padding: true}, {padding: true}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 5, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 8, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'vacation'}, {blocks: 10, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'nothing'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, {blocks: 0, status: 'completed'}, new Day(5, 'completed'), new Day()],
-    firstDate: 'Monday(1) - 1 block of padding'
-  };
+  /* public status = 'completed';
   public text = 6;
+   */
+
+  public calendar$: Observable<Calendar>;
+
+  constructor(private store: Store<fromCalendar.State>, private calendarService: CalendarService) {
+    // this.calendar$ = this.store.pipe(select(fromCalendar.getCalendar)) as Observable<Calendar>;
+  }
+
+  ngOnInit() {
+    this.calendar$ = this.store.pipe(select(getCalendar)) as Observable<Calendar>;
+    this.calendarService.retrieveCalendar();
+  }
+
   public getStatus(day: Day) {
-    let classString = ''
+    let classString = '';
     classString = day.status ? day.status : 'padding';
     return classString;
   }
-  public total() {
+  public total(days: Day[]) {
     let total = 0;
-    for(let day of this.month.days) {
+    for (const day of days) {
       total += day.blocks ? day.blocks : 0;
     }
     return total;
-  }
-  constructor() { }
-
-  ngOnInit() {
   }
 
 }

@@ -1,9 +1,9 @@
 <div>
   <h1 class="header-text">Non-Zero Days</h1>
   <div><!-- Year Calendar -->
-    <div *ngFor="let month of months"><!-- Month -->
+    <div *ngFor="let month of (calendar$ | async)?.months"><!-- Month -->
       <div class="body-text">
-        {{month.name}} - {{month.count}}
+        {{month.name}} - {{total(month.days)}}
       </div>
     </div>
   </div>

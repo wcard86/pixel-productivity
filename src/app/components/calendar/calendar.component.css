@@ -8,25 +8,44 @@
     text-align: center;
     font-size: 10px;
     padding-top: 3px; 
-  }
+}
   
-  .nothing {
+.nothing {
     background: #ff5252;
-  }
+}
   
-  .completed {
+.completed {
     background: #b7e1cd;
-  }
+}
   
-  .vacation {
+.vacation {
     background: #cccccc;
-  }
-  .calendar {
+}
+.month {
     width: 160px;
-  }
+    height: 240px;
+    display: inline-grid;
+    padding: 5px;
+}
   
-  .padding {
+.padding {
     border-color: white;
-  }
+    color: white;
+}
 
+.month-container {
+  flex-direction: row;
+}
+
+.calendar {
+  max-width: 700px
+}
+
+.days-area {
+  height: 160px;
+}
+
+.day-header {
+  border-color: white;
+}
   
